@@ -9,8 +9,8 @@
   
   # Assuming sid2019 and sedd2019 are already loaded
   # If not, uncomment these lines:
-  sid = read_dta("/Users/viyan/Downloads/thesis/data/clean/final/outcomes/old/county_by_year_ip.dta")
-  sedd = read_dta("/Users/viyan/Downloads/thesis/data/clean/final/outcomes/old/county_by_year_ed.dta") 
+  sid = read_dta("/Users/viyan/Downloads/stats209/data/clean/final/outcomes/old/county_by_year_ip.dta")
+  sedd = read_dta("/Users/viyan/Downloads/stats209/data/clean/final/outcomes/old/county_by_year_ed.dta") 
   sid2019 = sid |> filter(fyear == 2019)
   sedd2019 = sedd |> filter(fyear == 2019)
   
