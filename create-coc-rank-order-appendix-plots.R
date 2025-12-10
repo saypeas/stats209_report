@@ -3,23 +3,23 @@ library(ggplot2)
 library(purrr)
 
 # Load datasets
-sample = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/final-sample.csv")
-rdd = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/covariates/rdd-treatment.csv")
-pop = read.csv("~/Downloads/thesis/data/clean/final/coc-pop-by-year-FINAL.csv") 
-sample.cut = read.csv("~/Downloads/thesis/data/clean/final/FINAL-sample-hic-pit-mort.csv") 
-mort = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/outcomes/mortality-FINAL-with-merged-cocs.csv") |>
+sample = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/final-sample.csv")
+rdd = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/covariates/rdd-treatment.csv")
+pop = read.csv("~/Downloads/stats209/data/clean/final/coc-pop-by-year-FINAL.csv") 
+sample.cut = read.csv("~/Downloads/stats209/data/clean/final/FINAL-sample-hic-pit-mort.csv") 
+mort = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/outcomes/mortality-FINAL-with-merged-cocs.csv") |>
   filter(coc.number.new %in% sample.cut$coc.number)
-pit = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/outcomes/FINAL-pit.csv") |> 
+pit = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/outcomes/FINAL-pit.csv") |> 
   select(coc.number.new, ov.homeless, year) |>
   filter(coc.number.new %in% sample.cut$coc.number)
-sedd.cocs = read.csv("/Users/viyan/Downloads/thesis/output/tables/sedd_cocs_in_bandwidth.csv")
-sid.cocs = read.csv("/Users/viyan/Downloads/thesis/output/tables/sid_cocs_in_bandwidth.csv")
-baseline.cocs = read.csv("/Users/viyan/Downloads/thesis/output/tables/common_cocs_baseline.csv")
+sedd.cocs = read.csv("/Users/viyan/Downloads/stats209/output/tables/sedd_cocs_in_bandwidth.csv")
+sid.cocs = read.csv("/Users/viyan/Downloads/stats209/output/tables/sid_cocs_in_bandwidth.csv")
+baseline.cocs = read.csv("/Users/viyan/Downloads/stats209/output/tables/common_cocs_baseline.csv")
 
 # Load new dataframes
-sedd = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/outcomes/sedd-FINAL-with-merged-cocs.csv") |> 
+sedd = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/outcomes/sedd-FINAL-with-merged-cocs.csv") |> 
   rename(year = fyear)
-sid = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/outcomes/sid-FINAL-with-merged-cocs.csv") |> 
+sid = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/outcomes/sid-FINAL-with-merged-cocs.csv") |> 
   rename(year = fyear)
 
 # Join rdd with sample for PIT data
@@ -159,7 +159,7 @@ sedd_plot
 pit_plot
 
 # Define output directory
-out_dir <- "~/Downloads/thesis/output/figures/"
+out_dir <- "~/Downloads/stats209/output/figures/"
 
 # Save each plot
 ggsave(filename = file.path(out_dir, "rank_order_mort_plot.png"), plot = mort_plot, width = 4, height = 3, units = "in")
