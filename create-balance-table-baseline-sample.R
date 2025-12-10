@@ -43,15 +43,15 @@ perform_ttest <- function(data, variable, group_var = "d.esg.extra") {
 }
 
 # --- Load data ---
-acs = read.csv("~/Downloads/thesis/data/clean/final/acs-FINAL-male.csv")
-cocs = read.csv("/Users/viyan/Downloads/thesis/output/tables/common_cocs_baseline.csv") |>
+acs = read.csv("~/Downloads/stats209/data/clean/final/acs-FINAL-male.csv")
+cocs = read.csv("/Users/viyan/Downloads/stats209/output/tables/common_cocs_baseline.csv") |>
   mutate(d.esg.extra = ifelse(combined.loss.abs > 100000, 1, 0))
-esg <- read.csv("/Users/viyan/Downloads/thesis/data/clean/final/esg-awards-coc-by-year-FINAL.csv")
-pcepi <- read.csv("/Users/viyan/Downloads/thesis/data/raw/pcepi/2012-2024-pcepi.csv")
-coc = read.csv("/Users/viyan/Downloads/thesis/data/clean/coc-grants-clean-v2.csv") |>
+esg <- read.csv("/Users/viyan/Downloads/stats209/data/clean/final/esg-awards-coc-by-year-FINAL.csv")
+pcepi <- read.csv("/Users/viyan/Downloads/stats209/data/raw/pcepi/2012-2024-pcepi.csv")
+coc = read.csv("/Users/viyan/Downloads/stats209/data/clean/coc-grants-clean-v2.csv") |>
   mutate(across(where(is.character), tolower))
-pit = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/outcomes/FINAL-pit.csv")
-mort = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/outcomes/mortality-FINAL-with-merged-cocs.csv")
+pit = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/outcomes/FINAL-pit.csv")
+mort = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/outcomes/mortality-FINAL-with-merged-cocs.csv")
 
 # --- Adjust ESG dollars for inflation ---
 base.pcepi <- pcepi$pcepi[pcepi$year == 2024]
@@ -387,4 +387,4 @@ combined_table <- bind_rows(panel_a, panel_b, panel_c_baseline) %>%
 print(combined_table)
 
 # Optionally save the table
-write.csv(combined_table, "~/Downloads/thesis/output/tables/balance_table_baseline_with_ttests.csv", row.names = FALSE)
+write.csv(combined_table, "~/Downloads/stats209/output/tables/balance_table_baseline_with_ttests.csv", row.names = FALSE)
