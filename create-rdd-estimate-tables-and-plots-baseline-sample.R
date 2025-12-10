@@ -24,25 +24,25 @@ rdd.sample = left_join(rdd, sample, by = "coc.number") %>%
   filter(d.sample.merged == 0)
 
 # /!\ RUN THIS FIRST THEN THE FIRST CHUNK. Common datasets used across all analyses
-sample.cut = read.csv("~/Downloads/thesis/data/clean/final/FINAL-sample-hic-pit-mort.csv") |>
+sample.cut = read.csv("~/Downloads/stats209/data/clean/final/FINAL-sample-hic-pit-mort.csv") |>
   filter(coc.number %in% rdd.sample$coc.number.new)
-sample = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/final-sample.csv")
-rdd = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/covariates/rdd-treatment.csv")
+sample = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/final-sample.csv")
+rdd = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/covariates/rdd-treatment.csv")
 
 # Load HIC datasets
-hic.extra = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/outcomes/FINAL-hic-extra.csv") %>%
+hic.extra = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/outcomes/FINAL-hic-extra.csv") %>%
   filter(coc.number.new %in% sample.cut$coc.number)
-hic.norm = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/outcomes/FINAL-hic-norm.csv") %>%
+hic.norm = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/outcomes/FINAL-hic-norm.csv") %>%
   filter(coc.number.new %in% sample.cut$coc.number)
 
 # Load Mortality dataset
-mort = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/outcomes/mortality-FINAL-with-merged-cocs.csv") %>%
+mort = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/outcomes/mortality-FINAL-with-merged-cocs.csv") %>%
   filter(coc.number.new %in% sample.cut$coc.number)
 
 # Load PIT dataset
-pit = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/outcomes/FINAL-pit.csv") %>%
+pit = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/outcomes/FINAL-pit.csv") %>%
   filter(coc.number.new %in% sample.cut$coc.number)
-pop = read.csv("~/Downloads/thesis/data/clean/final/coc-pop-by-year-FINAL.csv")
+pop = read.csv("~/Downloads/stats209/data/clean/final/coc-pop-by-year-FINAL.csv")
 
 ####################################################
 # Data Preparation - HIC
@@ -258,7 +258,7 @@ print(rd_estimates_all)
 # Save combined results to CSV
 write.csv(
   rd_estimates_all, 
-  file = "~/Downloads/thesis/output/tables/unified_rdd_estimates_DROP_MERGE.csv", 
+  file = "~/Downloads/stats209/output/tables/unified_rdd_estimates_DROP_MERGE.csv", 
   row.names = FALSE
 )
 
@@ -341,7 +341,7 @@ create_rd_plot <- function(rd_results, title_suffix = "") {
 hic_total_beds_results <- run_rd_for_df(hic.norm.final, "log.beds_total")
 p_hic_total <- create_rd_plot(hic_total_beds_results, "HIC Total Beds")
 ggsave(
-  filename = "~/Downloads/thesis/output/figures/rdd_plot_hic.png",
+  filename = "~/Downloads/stats209/output/figures/rdd_plot_hic.png",
   plot = p_hic_total,
   width = 4.5,
   height = 3,
@@ -352,7 +352,7 @@ ggsave(
 mort_results <- run_rd_for_df(mort.final, "log.total.deaths")
 p_mort <- create_rd_plot(mort_results, "Mortality")
 ggsave(
-  filename = "~/Downloads/thesis/output/figures/rdd_plot_mort.png",
+  filename = "~/Downloads/stats209/output/figures/rdd_plot_mort.png",
   plot = p_mort,
   width = 4.5,
   height = 3,
@@ -363,7 +363,7 @@ ggsave(
 pit_results <- run_rd_for_df(pit.final, "log.ov.homeless")
 p_pit <- create_rd_plot(pit_results, "PIT Overall Homeless")
 ggsave(
-  filename = "~/Downloads/thesis/output/figures/rdd_plot_pit.png",
+  filename = "~/Downloads/stats209/output/figures/rdd_plot_pit.png",
   plot = p_pit,
   width = 4.5,
   height = 3,
@@ -470,7 +470,7 @@ robustness_targets <- list(
 )
 
 # Directory for saving plots
-output_dir <- "~/Downloads/thesis/output/figures/robustness/"
+output_dir <- "~/Downloads/stats209/output/figures/robustness/"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 # Set your desired bandwidth
@@ -485,7 +485,7 @@ for (target in names(robustness_targets)) {
   # Call with custom bandwidth of 269,517
   create_rd_plots(data = data, outcomes = outcomes, 
                   dataset_name = dataset_name, 
-                  output_dir = "~/Downloads/thesis/output/figures/robustness/",
+                  output_dir = "~/Downloads/stats209/output/figures/robustness/",
                   bandwidth = custom_bandwidth)
 }
 
@@ -546,6 +546,6 @@ cocs_in_bandwidth <- list(
 # Export common CSVS
 write.csv(
   pit_cocs,
-  file = "~/Downloads/thesis/output/tables/common_cocs_baseline.csv",
+  file = "~/Downloads/stats209/output/tables/common_cocs_baseline.csv",
   row.names = FALSE
 )
