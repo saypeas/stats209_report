@@ -1,15 +1,15 @@
 #### Load data ####
-acs = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/covariates/acs-clean-FINAL.csv")
-rdd = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/covariates/rdd-treatment.csv")
-hic.extra = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/outcomes/FINAL-hic-extra.csv")
-hic.norm = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/outcomes/FINAL-hic-norm.csv")
-pit = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/outcomes/FINAL-pit.csv")
-mort = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/outcomes/mortality-FINAL-with-merged-cocs.csv")
-sedd = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/outcomes/sedd-FINAL-with-merged-cocs.csv") |>
+acs = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/covariates/acs-clean-FINAL.csv")
+rdd = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/covariates/rdd-treatment.csv")
+hic.extra = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/outcomes/FINAL-hic-extra.csv")
+hic.norm = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/outcomes/FINAL-hic-norm.csv")
+pit = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/outcomes/FINAL-pit.csv")
+mort = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/outcomes/mortality-FINAL-with-merged-cocs.csv")
+sedd = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/outcomes/sedd-FINAL-with-merged-cocs.csv") |>
   rename(year = fyear)
-sid = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/outcomes/sid-FINAL-with-merged-cocs.csv") |>
+sid = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/outcomes/sid-FINAL-with-merged-cocs.csv") |>
   rename(year = fyear)
-sample = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/final-sample.csv") 
+sample = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/final-sample.csv") 
 ####
 
 #### LaTeX font ####
@@ -131,7 +131,7 @@ for (dataset_name in names(all_rd_results)) {
 }
 
 # Directory to save plots
-output_dir <- "~/Downloads/thesis/output/figures"
+output_dir <- "~/Downloads/stats209/output/figures"
 
 # Loop to plot and save each dataset
 for (dataset_name in names(all_rd_results)) {
@@ -162,7 +162,7 @@ robustness_targets <- list(
 )
 
 # Directory for saving plots
-output_dir <- "~/Downloads/thesis/output/figures/robustness/"
+output_dir <- "~/Downloads/stats209/output/figures/robustness/"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 # Loop through the robustness_targets list and run create_rd_plots for each dataset
