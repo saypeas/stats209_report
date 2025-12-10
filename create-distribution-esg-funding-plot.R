@@ -1,17 +1,17 @@
-#rdd = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/covariates/rdd-treatment.csv")
-sample = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/final-sample.csv") |>
+#rdd = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/covariates/rdd-treatment.csv")
+sample = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/final-sample.csv") |>
   filter(d.sample.bos.statewide == 0)
-grants = read.csv("/Users/viyan/Downloads/thesis/data/clean/coc-grants-clean-v2.csv") |>
+grants = read.csv("/Users/viyan/Downloads/stats209/data/clean/coc-grants-clean-v2.csv") |>
   mutate(across(where(is.character), tolower))
-esg = read.csv("~/Downloads/thesis/data/clean/final/covariates/esg-treated-ALL.csv") |>
+esg = read.csv("~/Downloads/stats209/data/clean/final/covariates/esg-treated-ALL.csv") |>
   filter(coc.number %in% sample$coc.number) |>
   mutate(year = 2017)
-esf = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/esg-awards-coc-by-year-FINAL.csv") |>
+esf = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/esg-awards-coc-by-year-FINAL.csv") |>
   filter(coc.number %in% sample$coc.number) |>
   left_join(esg, by = "coc.number")
-pcepi = read.csv("/Users/viyan/Downloads/thesis/data/raw/pcepi/2012-2024-pcepi.csv")
+pcepi = read.csv("/Users/viyan/Downloads/stats209/data/raw/pcepi/2012-2024-pcepi.csv")
 # Using the pre-merged CoCs
-pit = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/outcomes/pit-clean-final-with-bos.csv") |> 
+pit = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/outcomes/pit-clean-final-with-bos.csv") |> 
   select(coc.number, ov.homeless, year)
 
 # Convert to real dollars
@@ -164,7 +164,7 @@ esg.trends = trend.esf |>
 
 
 # Save individual plots with their own legends
-out_dir <- "~/Downloads/thesis/output/figures/"
+out_dir <- "~/Downloads/stats209/output/figures/"
 ggsave(filename = file.path(out_dir, "trends.esg.png"), plot = esg.trends, width = 6, height = 4, units = "in")
 ggsave(filename = file.path(out_dir, "trends.coc.png"), plot = coc.grant.trends, width = 6, height = 4, units = "in")
 ggsave(filename = file.path(out_dir, "dist.esg.png"), plot = esg.dist, width = 5.8, height = 4, units = "in")
