@@ -1,4 +1,4 @@
-a = read.csv("/Users/viyan/Downloads/thesis/data/raw/norm/esg-supp-calcs-FINAL.csv")
+a = read.csv("/Users/viyan/Downloads/stats209/data/raw/norm/esg-supp-calcs-FINAL.csv")
 
 a = a |>
   select(coc = coc.number.name,
