@@ -44,16 +44,16 @@ perform_ttest <- function(data, variable, group_var = "d.esg.extra") {
 }
 
 # --- Load data ---
-acs = read.csv("~/Downloads/thesis/data/clean/final/acs-FINAL-male.csv")
-cocs = read.csv("/Users/viyan/Downloads/thesis/output/tables/sid_cocs_in_bandwidth.csv") |>
+acs = read.csv("~/Downloads/stats209/data/clean/final/acs-FINAL-male.csv")
+cocs = read.csv("/Users/viyan/Downloads/stats209/output/tables/sid_cocs_in_bandwidth.csv") |>
   mutate(d.esg.extra = ifelse(combined.loss.abs > 100000, 1, 0))
-esg <- read.csv("/Users/viyan/Downloads/thesis/data/clean/final/esg-awards-coc-by-year-FINAL.csv")
-pcepi <- read.csv("/Users/viyan/Downloads/thesis/data/raw/pcepi/2012-2024-pcepi.csv")
-coc = read.csv("/Users/viyan/Downloads/thesis/data/clean/coc-grants-clean-v2.csv") |>
+esg <- read.csv("/Users/viyan/Downloads/stats209/data/clean/final/esg-awards-coc-by-year-FINAL.csv")
+pcepi <- read.csv("/Users/viyan/Downloads/stats209/data/raw/pcepi/2012-2024-pcepi.csv")
+coc = read.csv("/Users/viyan/Downloads/stats209/data/clean/coc-grants-clean-v2.csv") |>
   mutate(across(where(is.character), tolower))
-pit = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/outcomes/FINAL-pit.csv")
-mort = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/outcomes/mortality-FINAL-with-merged-cocs.csv")  
-sid = read.csv("/Users/viyan/Downloads/thesis/data/clean/final/outcomes/sid-FINAL-with-merged-cocs.csv") |>
+pit = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/outcomes/FINAL-pit.csv")
+mort = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/outcomes/mortality-FINAL-with-merged-cocs.csv")  
+sid = read.csv("/Users/viyan/Downloads/stats209/data/clean/final/outcomes/sid-FINAL-with-merged-cocs.csv") |>
   rename(year = fyear) |>
   filter(coc.number.new != "ny-519")
 
@@ -349,4 +349,4 @@ cat("\nNote: *** p<0.01, ** p<0.05, * p<0.10\n")
 cat("SE_Diff reports the standard error of the difference in means used in the t-test\n")
 
 # Write to CSV
-write.csv(combined_table, "~/Downloads/thesis/output/tables/balance_table_sid_with_ttests_and_se.csv", row.names = FALSE)
+write.csv(combined_table, "~/Downloads/stats209/output/tables/balance_table_sid_with_ttests_and_se.csv", row.names = FALSE)
